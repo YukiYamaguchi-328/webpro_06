@@ -39,9 +39,21 @@ app.get("/janken", (req, res) => {
   else cpu = 'パー';
   // ここに勝敗の判定を入れる
   // 今はダミーで人間の勝ちにしておく
-  let judgement = '勝ち';
-  win += 1;
+  //let judgement = '勝ち';
+  //win += 1;
+  //total += 1;
+  if ((hand === 'グー' && cpu === 'チョキ') ||
+      (hand === 'チョキ' && cpu === 'パー') ||
+      (hand === 'パー' && cpu === 'グー')) {
+    judgement = '勝ち';
+    win += 1; // 勝った場合は勝ち数を増やす
+  } else if (hand === cpu) {
+    judgement = 'あいこ'; // あいこの場合
+  } else {
+    judgement = '負け'; // 負けの場合
+  }
   total += 1;
+
   const display = {
     your: hand,
     cpu: cpu,
