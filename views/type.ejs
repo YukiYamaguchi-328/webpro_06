@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ポケモンタイプ相性</title>
+</head>
+<body>
+    <p>あなたのポケモンは<%= your %>です．</p>
+    <p>コンピュータのポケモンは<%= cpu %>です．</p>
+    <p>判定：<%= judgement %></p>
+    <p>現在<%= total %>試合中<%= batugun %>回タイプ相性抜群で，<%= imahitotu %>回タイプ相性が悪いです．</p>
+    <hr>
+    <form action="/type">
+        <input type="text" name="type" required>
+        <label for="type">次のポケモンのタイプは？</label>
+        <input type="hidden" name="batugun" value="<%= batugun %>">
+        <input type="hidden" name="imahitotu" value="<%= imahitotu %>">
+        <input type="hidden" name="total" value="<%= total %>">
+        <input type="submit" values="君に決めた！">
+    </form>   
+</body>
+</html>

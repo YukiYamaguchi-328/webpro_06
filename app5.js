@@ -100,4 +100,44 @@ app.get("/suji", (req, res) => {
   res.render( 'suji', display );
 });
 
+app.get("/type", (req, res) => {
+  let type = req.query.type;
+  let batugun = Number( req.query.batugun ) || 0;
+  let imahitotu = Number( req.query.imahitotu ) || 0;
+  let total = Number( req.query.total ) || 0;
+  console.log( {type, batugun, imahitotu, total
+  });
+  const num = Math.floor( Math.random() * 3 + 1 );
+  let cpu = '';
+  if( num==1 ) cpu = 'ほのおタイプ';
+  else if( num==2 ) cpu = 'みずタイプ';
+  else cpu = 'くさタイプ';
+  
+  if ((type === 'ほのおタイプ' && cpu === 'くさタイプ') ||
+      (type === 'くさタイプ' && cpu === 'みずタイプ') ||
+      (type === 'みずタイプ' && cpu === 'ほのおタイプ')) {
+    judgement = '効果抜群！！';
+    batugun += 1; // 一致した場合増やす
+  } else if ((type === 'くさタイプ' && cpu === 'ほのおタイプ') ||
+      (type === 'ほのおタイプ' && cpu === 'みずタイプ') ||
+      (type === 'みずタイプ' && cpu === 'くさタイプ')) {
+    judgement = '効果いまひとつ';
+    imahitotu += 1;
+  } else {
+    judgement = '何もなし'; 
+  }
+  total += 1;
+
+  const display = {
+    your: type,
+    cpu: cpu,
+    judgement: judgement,
+    batugun: batugun,
+    imahitotu: imahitotu,
+    total: total
+  }
+
+  res.render( 'type', display );
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
