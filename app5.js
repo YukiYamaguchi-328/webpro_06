@@ -64,4 +64,44 @@ app.get("/janken", (req, res) => {
   res.render( 'janken', display );
 });
 
+app.get("/suji", (req, res) => {
+  let suji = req.query.suji;
+  let itti = Number( req.query.itti ) || 0;
+  let huitti = Number( req.query.huitti ) || 0;
+  let total = Number( req.query.total ) || 0;
+  console.log( {suji, itti, huitti, total
+  });
+  const num = Math.floor( Math.random() * 10 + 1 );
+  let cpu = '';
+  if( num==1 ) cpu = '0';
+  else if( num==2 ) cpu = '1';
+  else if( num==3 ) cpu = '2';
+  else if( num==4 ) cpu = '3';
+  else if( num==5 ) cpu = '4';
+  else if( num==6 ) cpu = '5';
+  else if( num==7 ) cpu = '6';
+  else if( num==8 ) cpu = '7';
+  else if( num==9 ) cpu = '8';
+  else cpu = '9';
+  
+  if (suji === cpu) {
+    judgement = '一致！';
+    itti += 1; // 一致した場合増やす
+  } else {
+    judgement = '不一致'; // 不一致の場合
+    huitti += 1;
+  }
+  total += 1;
+
+  const display = {
+    your: suji,
+    cpu: cpu,
+    judgement: judgement,
+    itti: itti,
+    huitti: huitti,
+    total: total
+  }
+  res.render( 'janken', display );
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
