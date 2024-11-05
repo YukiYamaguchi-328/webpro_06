@@ -101,8 +101,8 @@ app.get("/suji", (req, res) => {
     huitti: huitti,
     total: total
   }
-  
-  res.render( 'janken', display );
+
+  res.render( 'suji', display );
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
