@@ -101,6 +101,7 @@ app.get("/suji", (req, res) => {
     huitti: huitti,
     total: total
   }
+  
   res.render( 'janken', display );
 });
 
