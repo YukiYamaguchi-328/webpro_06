@@ -71,18 +71,13 @@ app.get("/suji", (req, res) => {
   let total = Number( req.query.total ) || 0;
   console.log( {suji, itti, huitti, total
   });
-  const num = Math.floor( Math.random() * 10 + 1 );
+  const num = Math.floor( Math.random() * 5 + 1 );
   let cpu = '';
-  if( num==1 ) cpu = '0';
-  else if( num==2 ) cpu = '1';
-  else if( num==3 ) cpu = '2';
-  else if( num==4 ) cpu = '3';
-  else if( num==5 ) cpu = '4';
-  else if( num==6 ) cpu = '5';
-  else if( num==7 ) cpu = '6';
-  else if( num==8 ) cpu = '7';
-  else if( num==9 ) cpu = '8';
-  else cpu = '9';
+  if( num==1 ) cpu = '1';
+  else if( num==2 ) cpu = '2';
+  else if( num==3 ) cpu = '3';
+  else if( num==4 ) cpu = '4';
+  else cpu = '5';
   
   if (suji === cpu) {
     judgement = '一致！';
