@@ -44,8 +44,8 @@ flowchart TD;
 start["開始"];
 end1["終了"]
 if{"1~5の数字が一致するか"}
-itti["一致"]
-huitti["不一致"]
+itti["一致と表示"]
+huitti["不一致と表示"]
 total["totalに1追加"]
 
 start --> if
@@ -63,9 +63,9 @@ flowchart TD;
 start["開始"];
 end1["終了"]
 if{"ポケモンのタイプの相性がいいか"}
-batugun["効果抜群!"]
-imahitotu["効果いまひとつ"]
-no["何もなし"]
+batugun["効果抜群!と表示"]
+imahitotu["効果いまひとつ と表示"]
+no["何もなし と表示"]
 total["totalに1追加"]
 
 start --> if
