@@ -37,18 +37,43 @@ Example app listening on port 8080!
 4. Webブラウザでlocalhost:8080/public/type.htmlにアクセスする
 1. ほのおタイプ，くさタイプ，みずタイプのうち一つ入力する
 ## フローチャート
+### /sujiのフローチャート
 ```mermaid
 flowchart TD;
 
 start["開始"];
 end1["終了"]
-if{"条件に合うか"}
-win["勝ち"]
-loose["負け"]
+if{"1~5の数字が一致するか"}
+itti["一致"]
+huitti["不一致"]
+total["totalに1追加"]
 
 start --> if
-if -->|yes| win
-win --> end1
-if -->|no| loose
-loose --> end1
+if -->|yes| itti
+itti --> total
+if -->|no| huitti
+huitti --> total
+total --> end1
+```
+
+### /typeのフローチャート
+```mermaid
+flowchart TD;
+
+start["開始"];
+end1["終了"]
+if{"ポケモンのタイプの相性がいいか"}
+batugun["効果抜群!"]
+imahitotu["効果いまひとつ"]
+no["何もなし"]
+total["totalに1追加"]
+
+start --> if
+if -->|良い| batugun
+batugun --> total
+if -->|悪い| imahitotu
+imahitotu --> total
+if --> |どちらでもない|no
+no --> total
+total --> end1
 ```
