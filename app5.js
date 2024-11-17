@@ -140,4 +140,37 @@ app.get("/type", (req, res) => {
   res.render( 'type', display );
 });
 
+app.get("/test1", (req, res) => {
+  const value1 = req.query.text;
+  const value2 = req.query.date;
+  const value3 = req.query.month;
+  const value4 = req.query.number;
+  const value5 = req.query.password;
+  const value6 = req.query.radio;
+  const value7 = req.query.range;
+
+  let value8 = "";
+  
+  if( req.query.test1 ){
+    value8 += "a";
+  } // 1番目の項目がチェックされていたときの処理
+  if( req.query.test2 ){
+    value8 += "b";
+  } // 2番目の項目がチェックされていたときの処理
+
+  const display = {
+    value1: value1,
+    value2: value2,
+    value3: value3,
+    value4: value4,
+    value5: value5,
+    value6: value6,
+    value7: value7,
+    value8: value8,
+  }
+
+  res.render( 'test1', display );
+
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
