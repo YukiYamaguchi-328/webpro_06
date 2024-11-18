@@ -57,10 +57,12 @@ Example app listening on port 8080!
 
 ## プログラムの機能
 ### 数合わせゲームの機能
-1. 数合わせゲームゲームのページにアクセスし，起動する．
+1. 数合わせゲームのページにアクセスし，起動する．
 1. 数字を入力し，送信ボタンを押す．
 1. 自分の入力した数字とコンピュータが出した数字が表示され，一致したか不一致だったかを判断する．
 1. 現在の試行回数，一致回数，不一致回数を表示する．
+1. これを何回も繰り返すことができる．
+
 ```mermaid
 flowchart TD;
 
@@ -72,37 +74,83 @@ itti+["一致回数を1増加"]
 huitti["不一致と表示"]
 huitti+["不一致回数を1増加"]
 total["試行回数を1増加"]
+cpu["1〜5のランダムな数値を生成しcpuに格納"]
+kekka["累計試行，一致，不一致回数の表示"]
 
-start --> if
+start --> cpu
+cpu --> if
 if -->|yes| itti
 itti --> itti+
 if -->|no| huitti
 huitti --> huitti+
 itti+ --> total
 huitti+ --> total
-total --> end1
+total --> kekka
+kekka --> end1
+end1-->start
 ```
 
 ### ポケモンタイプ相性診断の機能
+1. ポケモンタイプ相性診断のページにアクセスし，起動する．
+1. ポケモンのタイプを入力し，送信ボタンを押す．
+1. 自分の入力したタイプとコンピュータが出したタイプが表示され，効果抜群，効果いまひとつ，何もなしかを判断する．
+1. 現在の試合回数，相性抜群回数，相性悪い回数を表示する．
+1. これを何回も繰り返すことができる．
+
 ```mermaid
 flowchart TD;
 
-start["開始"];
+start["開始 ポケモンタイプの入力"];
 end1["終了"]
 if{"ポケモンのタイプの相性がいいか"}
 batugun["効果抜群!と表示"]
 imahitotu["効果いまひとつ と表示"]
 no["何もなし と表示"]
 total["totalに1追加"]
+cpu["cpuのタイプのランダム選択"]
+batugun+["タイプ相性抜群回数を1増加"]
+imahitotu+["タイプ相性が悪い回数を1増加"]
+kekka["累計の試合，抜群，いまひとつ回数の表示"]
 
-start --> if
+start --> cpu
+cpu --> if
 if -->|良い| batugun
-batugun --> total
+batugun --> batugun+
+batugun+ --> total
 if -->|悪い| imahitotu
-imahitotu --> total
+imahitotu --> imahitotu+
+imahitotu+ --> total
 if --> |どちらでもない|no
 no --> total
-total --> end1
+total --> kekka
+kekka --> end1
+end1-->start
 ```
 
 ### パスワード正誤判定の機能
+1. パスワード入力のページにアクセスし，起動する．
+1. パスワードを入力し，送信ボタンを押す．
+1. 自分の入力したパスワードが正しいか判断する．(パスワードは,"webpro"である)
+1. これを何回も繰り返すことができる
+
+```mermaid
+flowchart TD;
+
+start["開始 パスワードの入力"];
+end1["終了"]
+if{"パスワードが正しいか(webproと入力されたか)"}
+sei["パスワードが正しいです．と表示"]
+hu["パスワードが間違っています.と表示"]
+hyouji{"passwordの入力確認"}
+
+
+
+start -->  hyouji
+hyouji -->|入力確認|if
+hyouji -->|入力不確認|start
+if -->|正しい| sei
+if -->|違う| hu
+sei --> end1
+hu --> end1
+end1-->start
+```
