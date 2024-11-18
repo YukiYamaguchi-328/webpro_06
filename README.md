@@ -57,21 +57,29 @@ Example app listening on port 8080!
 
 ## プログラムの機能
 ### 数合わせゲームの機能
+1. 数合わせゲームゲームのページにアクセスし，起動する．
+1. 数字を入力し，送信ボタンを押す．
+1. 自分の入力した数字とコンピュータが出した数字が表示され，一致したか不一致だったかを判断する．
+1. 現在の試行回数，一致回数，不一致回数を表示する．
 ```mermaid
 flowchart TD;
 
-start["開始"];
+start["開始 数字を入力"];
 end1["終了"]
 if{"1~5の数字が一致するか"}
 itti["一致と表示"]
+itti+["一致回数を1増加"]
 huitti["不一致と表示"]
-total["totalに1追加"]
+huitti+["不一致回数を1増加"]
+total["試行回数を1増加"]
 
 start --> if
 if -->|yes| itti
-itti --> total
+itti --> itti+
 if -->|no| huitti
-huitti --> total
+huitti --> huitti+
+itti+ --> total
+huitti+ --> total
 total --> end1
 ```
 
