@@ -173,4 +173,21 @@ app.get("/test1", (req, res) => {
 
 });
 
+
+app.get("/password", (req, res) => {
+  const pass = req.query.password || ""; // パスワードが送信されなかった場合は空文字
+  const CORRECT_PASSWORD = "webpro";
+  let message = null; // 表示するメッセージを初期化
+
+  if (pass) {
+    if (pass === CORRECT_PASSWORD) {
+      message = "パスワードが正しいです．";
+    } else {
+      message = "パスワードが間違っています．";
+    }
+  }
+  res.render("password", {message});
+});
+
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
