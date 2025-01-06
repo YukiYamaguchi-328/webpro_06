@@ -22,7 +22,7 @@ document.querySelector('#post').addEventListener('click', () => {
         }
         return response.json();
     })
-    .then( (response) => {
+    .then( (response) => {             //23行目のreturnを使う
         console.log( response );
         document.querySelector('#message').value = "";
     });
