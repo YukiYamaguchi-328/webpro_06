@@ -105,4 +105,41 @@ app.post("/post", (req, res) => {
   res.json( {number: bbs.length } );
 });
 
+app.post("/delete", (req, res) => {
+  const { index } = req.body;
+  const idx = Number(index);  // indexを数値に変換
+
+  if (bbs[idx]) {  // 削除するメッセージが存在するかチェック
+    bbs.splice(idx, 1);  // メッセージを削除
+    res.json({ success: true, message: "メッセージが削除されました。" });
+  } else {
+    res.json({ success: false, message: "メッセージが見つかりません。" });
+  }
+});
+
+app.post("/like", (req, res) => {
+  const { index } = req.body;
+  const idx = Number(index);
+
+  if (bbs[idx]) {  // メッセージが存在するかチェック
+    bbs[idx].likes = (bbs[idx].likes || 0) + 1;  // いいねを増加
+    res.json({ success: true, likes: bbs[idx].likes });
+  } else {
+    res.json({ success: false, message: "メッセージが見つかりません。" });
+  }
+});
+
+app.post("/edit", (req, res) => {
+  const { index, message } = req.body;
+  const idx = Number(index);  // indexを数値に変換
+
+  if (bbs[idx]) {  // 編集するメッセージが存在するかチェック
+      bbs[idx].message = message;  // メッセージを更新
+      res.json({ success: true });
+  } else {
+      res.json({ success: false, message: "メッセージが見つかりません。" });
+  }
+});
+
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
